@@ -1,0 +1,45 @@
+***********************************************
+	
+CREATE SCHEMA `booking` ;
+	
+	
+CREATE TABLE booking.product ( id INTEGER NOT NULL AUTO_INCREMENT,name VARCHAR(255), price float,
+        created_date DATE, PRIMARY KEY(id));
+		
+	
+	ALTER TABLE booking.PRODUCT
+ADD COLUMN IS_ACTIVE INT
+
+ALTER TABLE booking.product ALTER COLUMN IS_ACTIVE SET DEFAULT 1;
+
+
+CREATE TABLE booking.order(
+ ID INTEGER NOT NULL AUTO_INCREMENT,
+ STATUS VARCHAR(255),
+ CREATED_DATE DATE,
+ TOTAL_AMOUNT FLOAT,
+ PRIMARY KEY(ID));
+ 
+ CREATE TABLE booking.order_item(
+ ID INTEGER PRIMARY KEY NOT NULL  AUTO_INCREMENT,
+ ORDER_ID INTEGER NOT NULL,
+ PRODUCT_ID INTEGER NOT NULL,
+ QUANTITY INTEGER
+);
+
+
+ ALTER TABLE booking.order_item 
+    ADD CONSTRAINT FK_orderID FOREIGN KEY (ORDER_ID) 
+    REFERENCES booking.order (ID);
+	
+
+ ALTER TABLE booking.order_item
+    ADD CONSTRAINT FK_productID FOREIGN KEY (PRODUCT_ID) 
+    REFERENCES booking.product(ID);
+	
+	ALTER TABLE `booking`.`order` 
+RENAME TO  `booking`.`order_products` ;
+
+
+alter table booking.order_products modify column created_date DATETIME ;
+
