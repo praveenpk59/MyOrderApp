@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booking.BookingApp.entity.Product;
+import com.booking.BookingApp.model.ProductModel;
 import com.booking.BookingApp.resource.ProductResource;
 import com.booking.BookingApp.service.ProductService;
 
@@ -20,12 +21,12 @@ public class ProductResourceImpl implements ProductResource{
 	ProductService productService;
 	
 	@Override
-	public Product create(@Valid @RequestBody Product product) {
+	public Product create(@Valid @RequestBody ProductModel product) {
 		return productService.saveProduct(product);
 	}
 
 	@Override
-	public Product update(@RequestBody Product product, @PathVariable("productId") Long prodcutId) {
+	public Product update(@RequestBody ProductModel product, @PathVariable("productId") Long prodcutId) {
 		return productService.updateProduct(product, prodcutId);
 	}
 

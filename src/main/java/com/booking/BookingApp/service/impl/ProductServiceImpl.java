@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booking.BookingApp.entity.Product;
+import com.booking.BookingApp.model.ProductModel;
 import com.booking.BookingApp.repository.ProductRepository;
 import com.booking.BookingApp.service.ProductService;
 
@@ -18,8 +19,13 @@ public class ProductServiceImpl implements ProductService{
 	ProductRepository productRepository;
 	
 	@Override
-	public Product saveProduct(Product product) {
-		  return productRepository.save(product);
+	public Product saveProduct(ProductModel product) {
+		
+		  Product entity = new Product();
+		  entity.setIs_active(product.getIs_active());
+		  entity.setName(product.getName());
+		  entity.setPrice(product.getPrice());
+		  return productRepository.save(entity);
 	
 	}
 
@@ -30,7 +36,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product updateProduct(Product product, Long productId) {
+	public Product updateProduct(ProductModel product, Long productId) {
 		Optional<Product> fetched =  productRepository.findById(productId);
 		
 		if(fetched.get()!= null) {

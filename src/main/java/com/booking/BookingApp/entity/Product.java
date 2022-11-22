@@ -1,6 +1,7 @@
 package com.booking.BookingApp.entity;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Product {
 	
 	@CreationTimestamp
 	@Column(name = "created_date")
-	Instant createdDate;
+	LocalDateTime createdDate;
 	
 	@Column(name = "IS_ACTIVE")
 	Integer is_active;
@@ -79,12 +80,14 @@ public class Product {
 		this.price = price;
 	}
 
-	public Instant getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	
 
 }

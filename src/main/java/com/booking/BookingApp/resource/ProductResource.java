@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.booking.BookingApp.entity.Product;
+import com.booking.BookingApp.model.ProductModel;
 
 
 public interface ProductResource {
@@ -20,11 +21,11 @@ public interface ProductResource {
      * @return the created booking
      */
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    Product create(@RequestBody Product product);
+    Product create(@RequestBody ProductModel product);
     
     
     @RequestMapping(value = "/products/{productId}", method = RequestMethod.PUT)
-    Product update(@RequestBody Product product, @PathVariable("productId") Long productId);
+    Product update(@RequestBody ProductModel product, @PathVariable("productId") Long productId);
     
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     void delete(@PathVariable("id") Long productId);
